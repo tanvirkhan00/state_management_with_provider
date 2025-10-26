@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:state_management_with_provider/counter-controller-inherited-widget.dart';
+import 'package:provider/provider.dart';
 import 'package:state_management_with_provider/counter-controller.dart';
 import 'package:state_management_with_provider/homeScreen.dart';
 
@@ -21,10 +21,10 @@ class _CrudAppState extends State<CrudApp> {
   @override
   Widget build(BuildContext context) {
     final CounterController counterController = CounterController();
-    return CounterControllerInheritedWidget(
-       counterController: counterController,
+    return ChangeNotifierProvider(
+      create: (_) => counterController,
       child: MaterialApp(
-        title: 'Crud App',
+        title: 'Counter App',
         theme: ThemeData(colorSchemeSeed: Colors.blue),
         home: Homescreen(),
       ),

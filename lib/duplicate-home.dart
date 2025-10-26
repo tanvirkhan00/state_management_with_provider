@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:state_management_with_provider/counter-controller.dart';
 
-import 'counter-controller-inherited-widget.dart';
 
-
-class DuplicateHome extends StatefulWidget {
+class DuplicateHome extends StatelessWidget {
   const DuplicateHome({super.key,});
 
   @override
-  State<DuplicateHome> createState() => _DuplicateHomeState();
-}
-
-class _DuplicateHomeState extends State<DuplicateHome> {
-
-  @override
   Widget build(BuildContext context) {
-    final CounterController counterController = CounterControllerInheritedWidget.of(context)!.counterController;
     return Scaffold(
       appBar: AppBar(
         title: Text('Setting'),
@@ -23,18 +15,17 @@ class _DuplicateHomeState extends State<DuplicateHome> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ListenableBuilder(
-              listenable: counterController,
-              builder: (context, value) {
-                return Text('${counterController.counter}', style: TextStyle(fontSize: 30));
+          Consumer<CounterController>(
+              builder: (context, controller, value) {
+                return Text('${controller.counter}', style: TextStyle(fontSize: 30));
               }
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 20,
             children: [
-              ElevatedButton(onPressed: counterController.decrement, child: Text('-', style: TextStyle(fontSize: 25))),
-              ElevatedButton(onPressed: counterController.increment, child: Text('+', style: TextStyle(fontSize: 25))),
+              ElevatedButton(onPressed: context.read<CounterController>().decrement, child: Text('-', style: TextStyle(fontSize: 25))),
+              ElevatedButton(onPressed: context.read<CounterController>().increment, child: Text('+', style: TextStyle(fontSize: 25))),
             ],
           )
         ],
