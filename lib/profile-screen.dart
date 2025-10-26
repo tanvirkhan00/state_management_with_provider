@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:state_management_with_provider/counter-controller-inherited-widget.dart';
 import 'package:state_management_with_provider/counter-controller.dart';
 
-import 'counter-controller-inherited-widget.dart';
 
-
-class DuplicateHome extends StatefulWidget {
-  const DuplicateHome({super.key,});
+class profileScreen extends StatefulWidget {
+  const profileScreen({super.key,});
 
   @override
-  State<DuplicateHome> createState() => _DuplicateHomeState();
+  State<profileScreen> createState() => _profileScreenState();
 }
 
-class _DuplicateHomeState extends State<DuplicateHome> {
-
+class _profileScreenState extends State<profileScreen> {
   @override
   Widget build(BuildContext context) {
     final CounterController counterController = CounterControllerInheritedWidget.of(context)!.counterController;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Setting'),
+        title: Text('Profile'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ListenableBuilder(
-              listenable: counterController,
+              listenable:counterController,
               builder: (context, value) {
                 return Text('${counterController.counter}', style: TextStyle(fontSize: 30));
               }
@@ -33,10 +31,10 @@ class _DuplicateHomeState extends State<DuplicateHome> {
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 20,
             children: [
-              ElevatedButton(onPressed: counterController.decrement, child: Text('-', style: TextStyle(fontSize: 25))),
-              ElevatedButton(onPressed: counterController.increment, child: Text('+', style: TextStyle(fontSize: 25))),
+              ElevatedButton(onPressed: counterController.decrement, child: Text('-', style: TextStyle(fontSize: 25),)),
+              ElevatedButton(onPressed: counterController.increment, child: Text('+', style: TextStyle(fontSize: 25),)),
             ],
-          )
+          ),
         ],
       ),
     );
