@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:state_management_with_provider/counter-controller.dart';
 import 'package:state_management_with_provider/duplicate-home.dart';
 import 'package:state_management_with_provider/profile-screen.dart';
+import 'package:state_management_with_provider/theme-controller.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -50,6 +51,9 @@ class Homescreen extends StatelessWidget {
             onPressed:() =>  _profileButton(context),
             child: Icon(Icons.person_2),
           ),
+          IconButton(onPressed: (){
+            context.read<ThemeController>().toggleThemeMode();
+          }, icon: Icon(Icons.sunny))
         ],
       ),
     );
